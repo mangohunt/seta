@@ -2,7 +2,7 @@
 while not game:IsLoaded() or not game:GetService("CoreGui") or not game:GetService("Players").LocalPlayer or not game:GetService("Players").LocalPlayer.PlayerGui do wait() end
 -- Constraints: -----------------------|
 local ver = "1.9.9f"
-local cordCode = "https://discord.gg/JyzvQ6zdfg"
+local cordCode = nil
 ---------------------------------------|
 Parents = {[1] = game:GetService("CoreGui"):FindFirstChild("RobloxGui"), [2] = game:GetService("CoreGui"), [3] = game:GetService("Players").LocalPlayer.PlayerGui}
 if Parents[1] then
@@ -558,7 +558,7 @@ function loaddefaults()
 	ChatBind = false
 	CMDTab = {"commands","credits","plugin","changestyle","hotkeys","entercmds","support","",""}
 	TabsOff = true
-	KeepCMDXOn = false
+	keepsetaon = false
 	ifKickedAuto = false
 	whyIs = 0
 	combos = {}
@@ -607,7 +607,7 @@ function updatesaves()
 		ChatBind = ChatBind;
 		CMDTab = CMDTab;
 		TabsOff = TabsOff;
-		KeepCMDXOn = KeepCMDXOn;
+		keepsetaon = keepsetaon;
 		ifKickedAuto = ifKickedAuto;
 		whyIs = whyIs;
 		drawingtype = drawingtype;
@@ -664,7 +664,7 @@ function loadsaves()
 	ChatBind = saves.ChatBind
 	CMDTab = saves.CMDTab
 	TabsOff = saves.TabsOff
-	KeepCMDXOn = saves.KeepCMDXOn
+	keepsetaon = saves.keepsetaon
 	ifKickedAuto = saves.ifKickedAuto
 	whyIs = saves.whyIs
 	combos = saves.combos
@@ -3431,7 +3431,7 @@ local function suggestions_update()
 end
 task.spawn(suggestions_update)
 
-if KeepCMDXOn and syn.queue_on_teleport then
+if keepsetaon and syn.queue_on_teleport then
 	syn.queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source"))()')
 end
 
@@ -8408,15 +8408,15 @@ end
 
 function useCommand.runafter()
 	if arguments[2] == "on" then
-		opx("-","CMD-X will now run after rejoin")
-		KeepCMDXOn = true
-		if KeepCMDXOn and syn.queue_on_teleport then
+		opx("-","seta will now run after rejoin")
+		keepsetaon = true
+		if keepsetaon and syn.queue_on_teleport then
 			syn.queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source"))()')
 		end
 		updatesaves()
 	elseif arguments[2] == "off" then
-		opx("-","CMD-X will no longer run after rejoin")
-		KeepCMDXOn = false
+		opx("-","seta will no longer run after rejoin")
+		keepsetaon = false
 		updatesaves()
 	else
 		opx("*","2 arguments are required!")
